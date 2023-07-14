@@ -25,5 +25,23 @@ func RandomMessage() string {
 		"Hail, %v! Well met!",
 	}
 
+	// Range of random integer within the length of the formats slice
 	return formats[rand.Intn(len(formats))]
+}
+
+func Hellos(names []string) (map[string]string, error) {
+	// Syntax:
+	// make(map[key-type]value-type)
+	messages := make(map[string]string)
+
+	for _, name := range names {
+		message, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+
+		messages[name] = message
+	}
+
+	return messages, nil
 }
